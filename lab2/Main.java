@@ -1,13 +1,20 @@
+import model.Car;
 import repository.CarRepository;
 import service.CarService;
+
+import java.util.ArrayList;
 
 public class Main {
   public static void main(String[] args) {
     CarRepository carRepository = new CarRepository();
     CarService carService = new CarService(carRepository);
 
-    for (int i = 0; i < 40; i++) {
-      System.out.println(carService.createRandomCar());
+    carService.createCarPool(10);
+
+    // get all cars
+    ArrayList<Car> cars = carService.getAll();
+    for (Car car: cars) {
+      car.printCar();
     }
 
     System.out.println("\nCars made by Kia:");

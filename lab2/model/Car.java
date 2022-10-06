@@ -1,6 +1,20 @@
 package model;
 
 public class Car {
+
+  public void printCar() {
+    System.out.printf(
+            "Car { id: %d, brand: %s, model: %s, releaseYear: %d, color: %s, registrationNumber: %d, price: %d }%n",
+            this.id,
+            this.brand,
+            this.model,
+            this.releaseYear,
+            this.color,
+            this.registrationNumber,
+            this.price
+    );
+  }
+
   public int getId() {
     return this.id;
   }

@@ -1,61 +1,66 @@
 package service;
 
+import model.Car;
+import helper.CarHelper;
+import repository.CarRepository;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.stream.Collectors;
-
-import helper.CarHelper;
-import model.Car;
-import repository.CarRepository;
 
 public class CarService {
   public CarService(CarRepository carRepository) {
     this.carRepository = carRepository;
   }
 
-  public Car createRandomCar() {
-    return this.carRepository.create(
-      CarHelper.randStr(arrBrand),
-      CarHelper.randStr(arrModel),
-      CarHelper.randInt(2000, 2022),
-      CarHelper.randStr(arrColor),
-      CarHelper.randInt(0, 800000),
-      CarHelper.randInt(0, 10000)
-    );
+  public void createCarPool(int poolSize) {
+
+    for (int i = 0; i < poolSize; i++) {
+      this.carRepository.create(
+              CarHelper.getRandBrand(),
+              CarHelper.getRandModel(),
+              CarHelper.getRandInt(2000, 2022),
+              CarHelper.getRandColor(),
+              CarHelper.getRandInt(0, 10000000),
+              CarHelper.getRandInt(0, 10000)
+      );
+    }
   }
 
   public ArrayList<Car> findByBrand(String brand) {
     return this.carRepository
-      .findAll()
+      .getAll()
       .stream()
       .filter(car -> car.getBrand().equals(brand))
       .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  public ArrayList<Car> findByModelAndOlderThan(String model, int yearsOfExploitations) {
+  public ArrayList<Car> listBrandedCarsOlderThan(String brand, int age) {
+    ArrayList<Car> carsOfSpecifiedBrand = findByBrand(brand);
+    ArrayList<Car> intersection = new ArrayList<Car>();
+
+    for (Car car : carsOfSpecifiedBrand) {
+      if (Calendar.getInstance().get(Calendar.YEAR) - car.getReleaseYear() >= age) {
+        intersection.add(car);
+      }
+    }
+    return intersection;
+  }
+
+  public ArrayList<Car> listCarsMoreExpensiveThanWithSpecifiedReleaseYear(int releaseYear, int price) {
     return this.carRepository
-      .findAll()
+      .getAll()
       .stream()
       .filter(car ->
-        car.getModel().equals(model) &&
-        Calendar.getInstance().get(Calendar.YEAR) - car.getReleaseYear() >= yearsOfExploitations
+        car.getReleaseYear().equals(releaseYear) &&
+        car.getPrice() > price
       )
       .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  public ArrayList<Car> findByYearAndMoreExpensiveThan(int year, int price) {
-    return this.carRepository
-      .findAll()
-      .stream()
-      .filter(car -> car.getReleaseYear() == year && car.getPrice() > price)
-      .collect(Collectors.toCollection(ArrayList::new));
+  public ArrayList<Car> getAll() {
+    return this.carRepository.getAll();
   }
 
-
-
-  private CarRepository carRepository;
-
-  private static String[] arrModel = { "LX5", "V4", "SQ1", "K6", "HU66", "I1" };
-  private static String[] arrBrand = { "Honda", "GMC", "BMV", "Kia", "Toyota", "Nissan" };
-  private static String[] arrColor = { "black", "red", "green", "yellow", "white", "pink" };
+    private CarRepository carRepository;
 }

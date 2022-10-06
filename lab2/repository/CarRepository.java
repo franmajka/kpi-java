@@ -5,32 +5,12 @@ import java.util.ArrayList;
 import model.Car;
 
 public class CarRepository {
-  public ArrayList<Car> findAll() {
-    return CarRepository.cars;
+
+  public ArrayList<Car> getAll() {
+    return cars;
   }
 
-  public Car findById(int id) {
-    for (Car car : cars) {
-      if (car.getId() == id) {
-        return car;
-      }
-    }
-
-    return null;
-  }
-
-  public boolean removeById(int id) {
-    return CarRepository.cars.removeIf(car -> car.getId() == id);
-  }
-
-  public Car create(
-    String brand,
-    String model,
-    int releaseYear,
-    String color,
-    int registrationNumber,
-    int price
-  ) {
+  public Car create(String brand, String model, int releaseYear, String color, int registrationNumber, int price) {
     Car car = new Car();
 
     car.setId(CarRepository.lastId++);
@@ -44,6 +24,11 @@ public class CarRepository {
     CarRepository.cars.add(car);
 
     return car;
+  }
+
+  public Boolean delete(int id)
+  {
+    return CarRepository.cars.removeIf(car -> car.getId().equals(id));
   }
 
   private static ArrayList<Car> cars = new ArrayList<Car>();

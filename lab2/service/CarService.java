@@ -14,15 +14,14 @@ public class CarService {
   }
 
   public void createCarPool(int poolSize) {
-
     for (int i = 0; i < poolSize; i++) {
       this.carRepository.create(
-              CarHelper.getRandBrand(),
-              CarHelper.getRandModel(),
-              CarHelper.getRandInt(2000, 2022),
-              CarHelper.getRandColor(),
-              CarHelper.getRandInt(0, 10000000),
-              CarHelper.getRandInt(0, 10000)
+        CarHelper.getRandBrand(),
+        CarHelper.getRandModel(),
+        CarHelper.getRandInt(2000, 2022),
+        CarHelper.getRandColor(),
+        CarHelper.getRandInt(0, 10000000),
+        CarHelper.getRandInt(0, 10000)
       );
     }
   }

@@ -3,7 +3,6 @@ package helper;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CarHelper {
-
   public static String getRandModel() {
     return arrModel[( ThreadLocalRandom.current().nextInt(0, arrModel.length))];
   }
@@ -21,6 +20,6 @@ public class CarHelper {
   }
 
   private static final String[] arrModel = { "LX5", "V4", "SQ1", "K6", "HU66", "I1" };
-  private static final String[] arrBrand = { "Honda", "GMC", "Chrysler", "Kia", "Toyota", "Nissan" };
+  private static final String[] arrBrand = { "Honda", "GMC", "BMV", "Kia", "Toyota", "Nissan" };
   private static final String[] arrColor = { "black", "red", "green", "yellow", "white", "pink" };
 }

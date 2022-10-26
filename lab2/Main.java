@@ -1,21 +1,15 @@
-import model.Car;
 import repository.CarRepository;
 import service.CarService;
 
-import java.util.ArrayList;
 
 public class Main {
   public static void main(String[] args) {
     CarRepository carRepository = new CarRepository();
     CarService carService = new CarService(carRepository);
 
-    carService.createCarPool(10);
+    carService.createCarPool(30);
 
-    // get all cars
-    ArrayList<Car> cars = carService.getAll();
-    for (Car car: cars) {
-      car.printCar();
-    }
+    carService.getAll().forEach(System.out::println);
 
     System.out.println("\nCars made by Kia:");
     carService.findByBrand("Kia").forEach(System.out::println);

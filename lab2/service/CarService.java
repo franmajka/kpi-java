@@ -13,15 +13,17 @@ public class CarService {
     this.carRepository = carRepository;
   }
 
-  public Car createRandomCar() {
-    return this.carRepository.create(
-      CarHelper.randStr(arrBrand),
-      CarHelper.randStr(arrModel),
-      CarHelper.randInt(2000, 2022),
-      CarHelper.randStr(arrColor),
-      CarHelper.randInt(0, 800000),
-      CarHelper.randInt(0, 10000)
-    );
+  public void createCarPool(int poolSize) {
+    for (int i = 0; i < poolSize; i++) {
+      this.carRepository.create(
+        CarHelper.getRandBrand(),
+        CarHelper.getRandModel(),
+        CarHelper.getRandInt(2000, 2022),
+        CarHelper.getRandColor(),
+        CarHelper.getRandInt(0, 10000000),
+        CarHelper.getRandInt(0, 10000)
+      );
+    }
   }
 
   public ArrayList<Car> findByBrand(String brand) {
@@ -51,11 +53,10 @@ public class CarService {
       .collect(Collectors.toCollection(ArrayList::new));
   }
 
+  public ArrayList<Car> getAll() {
+    return this.carRepository.findAll();
+  }
 
 
-  private CarRepository carRepository;
-
-  private static String[] arrModel = { "LX5", "V4", "SQ1", "K6", "HU66", "I1" };
-  private static String[] arrBrand = { "Honda", "GMC", "BMV", "Kia", "Toyota", "Nissan" };
-  private static String[] arrColor = { "black", "red", "green", "yellow", "white", "pink" };
+  private final CarRepository carRepository;
 }

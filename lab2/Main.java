@@ -1,14 +1,15 @@
 import repository.CarRepository;
 import service.CarService;
 
+
 public class Main {
   public static void main(String[] args) {
     CarRepository carRepository = new CarRepository();
     CarService carService = new CarService(carRepository);
 
-    for (int i = 0; i < 40; i++) {
-      System.out.println(carService.createRandomCar());
-    }
+    carService.createCarPool(30);
+
+    carService.getAll().forEach(System.out::println);
 
     System.out.println("\nCars made by Kia:");
     carService.findByBrand("Kia").forEach(System.out::println);

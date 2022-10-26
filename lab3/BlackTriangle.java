@@ -2,9 +2,9 @@ public class BlackTriangle extends Triangle
 {
 	public BlackTriangle(Point A, Point B, Point C)
 	{
-		this.setPointA(A.x, A.y, A.z);
-		this.setPointB(B.x, B.y, B.z);
-		this.setPointC(C.x, C.y, C.z);
+		this.setPointA(A);
+		this.setPointB(B);
+		this.setPointC(C);
 	}
 
 	@Override

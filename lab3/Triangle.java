@@ -12,22 +12,22 @@ public class Triangle
         return this.pointC;
     }
 
-    public void setPointA(double x, double y, double z) {
-        this.pointA.x = x;
-        this.pointA.y = y;
-        this.pointA.z = z;
+    public void setPointA(Point a) {
+        this.pointA.x = a.x;
+        this.pointA.y = a.y;
+        this.pointA.z = a.z;
     }    
     
-    public void setPointB(double x, double y, double z) {
-        this.pointB.x = x;
-        this.pointB.y = y;
-        this.pointB.z = z;
+    public void setPointB(Point b) {
+        this.pointB.x = b.x;
+        this.pointB.y = b.y;
+        this.pointB.z = b.z;
     } 
 
-    public void setPointC(double x, double y, double z) {
-        this.pointC.x = x;
-        this.pointC.y = y;
-        this.pointC.z = z;
+    public void setPointC(Point c) {
+        this.pointC.x = c.x;
+        this.pointC.y = c.y;
+        this.pointC.z = c.z;
     } 
 
     public double getArea()	{

@@ -8,10 +8,10 @@ public class Circle
         return this.radius;
     }
 
-    public void setCenterCoordinates(double x, double y, double z) {
-        this.centerCoordinates.x = x;
-        this.centerCoordinates.y = y;
-        this.centerCoordinates.z = z;
+    public void setCenterCoordinates(Point p) {
+        this.centerCoordinates.x = p.x;
+        this.centerCoordinates.y = p.y;
+        this.centerCoordinates.z = p.z;
     }
 
     public void setRadius(double radius) {
